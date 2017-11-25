@@ -1,0 +1,49 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE, eval=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# msdr3pam
+
+The goal of msdr3pam is to enable the user to read, summarize, plot, and otherwise work with data regarding fatal injuries suffered in motor vehicle accidents in the US.  The source of the data is the Fatality Analysis Reporting System (FARS) of the US National Highway Traffic Safety Administration and it can be accessed at the 
+[FARS website](https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars).
+
+The raw data provided by FARS is contained in csv files that include a ".bz2" extension reflecting bzip2 compression.  Several sample data files are included in the package to provide application examples and testing.  These sample raw data files can be accessed as follows: system.file("extdata","accident_yyyy.csv.bz2",package="msdrpam"), where yyyy is either 2013, 2014, or 2015.  For other years you will have to download the data yourself from the 
+[FARS website](https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars).
+
+The name of the package reflectst the conditions under which it was developed.  In particular, it was developed for an assignment for Course 3 of the "Mastering Software Development in R" Specialization on Coursera (msdr3), offered by Johns Hopkins University.  In particular, this is the R package assignment (pa) developed by student Miesch (m).
+
+## Example
+
+Here is an example of how to summarize the traffic fatalities in three selected years:
+
+```{r summarize_years}
+library(msdr3pam)
+dir <- system.file("extdata",package="msdr3pam")
+fars_summarize_years(c(2013,2014,2015),dir=dir)
+```
+
+And here is an example of how to map out the locations of fatal accidents in a particular year for a particular state (in this case state number 26, which is Michigan)
+
+```{r map_state}
+fars_map_state(26,2013,dir=dir)
+```
+
+To load the raw data for a particular year (in this case 2014) into your R session as a tibble data frame, type
+```{r read_data}
+df <- fars_read(make_filename(2014,dir=dir))
+head(df)
+```
+
+

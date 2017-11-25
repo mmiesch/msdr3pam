@@ -1,0 +1,17 @@
+Package: msdr3pam
+Type: Package
+Title: MSDR Course 3 Package Assignment
+Version: 0.1.0
+Author: Mark Miesch
+Maintainer: The package maintainer <mark.s.miesch@gmail.com>
+Description: Read and summarize data on traffic fatalities.  
+    Done as a final project for Course 3 of Coursera's 
+    "Mastering Software Development in R" Specialization
+License: CC0
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Suggests: knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr

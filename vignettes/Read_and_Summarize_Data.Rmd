@@ -1,0 +1,56 @@
+---
+title: "Read and Summarize Data"
+author: "Mark Miesch"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Read_and_Summarize_Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This vignette walks you through the steps needed to load FARS data into your R session as a data frame and/or to summarize the number of traffic fatalities for a given range of years.
+
+
+## Obtaining FARS Data 
+
+The first thing you need to do is to obtain the data from the [FARS archive](https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars) maintained by the US National Highway Traffic Safety Administration.  These come in compressed csv files as described in the package documentation.   For convenience in what follows, you can define the variable that contains the directory where these data files are located.  For example, if you put the data in the directory fars_data on your Desktop,  
+
+```{r}
+dir <- file.path("~","Desktop","fars_data")
+```
+
+However, for the purposes of this vignette we will stick to the sample data that is already included in the package, which can be assessed as follows:
+
+```{r}
+dir <- system.file("extdata",package="msdr3pam")
+```
+
+This contains FARS data for the years 2013, 2014, and 2015.
+
+## Reading FARS Data
+
+Once you have defined the directory where the data is located, you can generate a filename in the proper FARS format by running:
+
+```{r make filename}
+library(msdr3pam)
+make_filename(2013,dir=dir)
+```
+
+To read the data from this file into your R session you can use (replace 2013 by the year of your choice)
+
+```{r read data}
+df <- fars_read(make_filename(2013,dir=dir))
+head(df)
+```
+
+
+## Summarizing FARS Data
+
+To summarize traffic fatality data by month for multiple years you can use the fars_summarize_years() function: 
+
+```{r, fig.show='hold'}
+fasum <- fars_summarize_years(c(2013,2014,2015),dir=dir)
+knitr::kable(fasum)
+```
+

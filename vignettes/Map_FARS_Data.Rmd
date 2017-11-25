@@ -1,0 +1,32 @@
+---
+title: "Map FARS DATA"
+author: "Mark Miesch"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Map_FARS_Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+The msdr3pam package also includes a way to map where traffic fatalities occurred for a particular state in a given year.
+
+## Obtaining FARS Data 
+
+As described in the Read and Summarize Data vignette,  you must first obtain the data from the [FARS archive](https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars)
+and specify the path to the data.  In this vignette, we will stick to the sample data included with the package, which contains FARS data for the years 2013, 2014, and 2015.
+
+```{r}
+dir <- system.file("extdata",package="msdr3pam")
+```
+
+## Map States
+
+Once the path to the data is defined, you can use the function fars_map_states() to map where the fatalities occurred in a given year:
+
+```{r}
+library(msdr3pam)
+fars_map_state(26,2013,dir=dir)
+```
+
+To see which numbers (1 to 51) correspond to which states, consult the [FARS User Manual](https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/812448)
