@@ -21,7 +21,6 @@
 #'   \url{https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars}
 #'
 #' @examples
-#' df <- fars_read('accident_2013.csv.bz2')
 #' df <- fars_read(make_filename(2014),system.file("extdata",package="msdr3pam"))
 #'
 #' @importFrom readr read_csv
