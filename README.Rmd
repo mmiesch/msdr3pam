@@ -37,11 +37,13 @@ fars_summarize_years(c(2013,2014,2015),dir=dir)
 And here is an example of how to map out the locations of fatal accidents in a particular year for a particular state (in this case state number 26, which is Michigan)
 
 ```{r map_state}
+dir <- system.file("extdata",package="msdr3pam")
 fars_map_state(26,2013,dir=dir)
 ```
 
 To load the raw data for a particular year (in this case 2014) into your R session as a tibble data frame, type
 ```{r read_data}
+dir <- system.file("extdata",package="msdr3pam")
 df <- fars_read(make_filename(2014,dir=dir))
 head(df)
 ```

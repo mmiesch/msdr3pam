@@ -10,9 +10,6 @@ fars_read(filename)
 \item{filename}{A character string containing the name of the file
 to read.  It is assumed to be a csv file (possibly compressed) 
 as provided by FARS.}
-
-\item{dir}{a character string containing the directory that contains
-the FARS data}
 }
 \value{
 The function returns a tibble data frame (class tbl_df) as 
@@ -26,8 +23,7 @@ Analysis Reporting System (FARS) of the US National Highway
 Traffic Safety Administration.
 }
 \examples{
-df <- fars_read('accident_2013.csv.bz2')
-df <- fars_read(make_filename(2014),system.file("extdata",package="msdr3pam"))
+df <- fars_read(make_filename(2014,dir=system.file("extdata",package="msdr3pam")))
 
 }
 \references{

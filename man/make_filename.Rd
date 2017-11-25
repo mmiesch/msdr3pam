@@ -25,8 +25,8 @@ Administration.  The filename follows standard FARS naming
 convention, including a "bz2"extension reflecting bzip2 compression.
 }
 \examples{
-filename <- make_filename(2014,system.file("extdata",package="msdr3pam))
-filename <- make_filename('2014',system.file("extdata",package="msdr3pam))
+filename <- make_filename(2014,system.file("extdata",package="msdr3pam"))
+filename <- make_filename('2014',system.file("extdata",package="msdr3pam"))
 
 }
 \references{

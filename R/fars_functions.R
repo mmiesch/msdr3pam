@@ -10,9 +10,6 @@
 #'     to read.  It is assumed to be a csv file (possibly compressed) 
 #'     as provided by FARS. 
 #'
-#' @param dir a character string containing the directory that contains
-#'     the FARS data
-#'
 #' @return The function returns a tibble data frame (class tbl_df) as 
 #'    defined ' by the dplyr package.  If the file does not exist, 
 #'    the function returns ' a NULL value.  '
@@ -21,7 +18,7 @@
 #'   \url{https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars}
 #'
 #' @examples
-#' df <- fars_read(make_filename(2014),system.file("extdata",package="msdr3pam"))
+#' df <- fars_read(make_filename(2014,dir=system.file("extdata",package="msdr3pam")))
 #'
 #' @importFrom readr read_csv
 #' @importFrom dplyr tbl_df
@@ -61,8 +58,8 @@ fars_read <- function(filename) {
 #'   \url{https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars}
 #'
 #' @examples
-#' filename <- make_filename(2014,system.file("extdata",package="msdr3pam))
-#' filename <- make_filename('2014',system.file("extdata",package="msdr3pam))
+#' filename <- make_filename(2014,system.file("extdata",package="msdr3pam"))
+#' filename <- make_filename('2014',system.file("extdata",package="msdr3pam"))
 #'
 #' @seealso \code{fars_read}
 #'
@@ -117,7 +114,7 @@ fars_read_years <- function(years,dir='./inst/extdata') {
                 tryCatch({
                         dat <- fars_read(file)
                         dplyr::mutate(dat, year = year) %>% 
-                                dplyr::select(MONTH, year)
+                                dplyr::select_(~MONTH, ~year)
                 }, error = function(e) {
                         warning("invalid year: ", year)
                         return(NULL)
@@ -166,9 +163,9 @@ fars_read_years <- function(years,dir='./inst/extdata') {
 fars_summarize_years <- function(years,dir='./inst/extdata') {
         dat_list <- fars_read_years(years,dir=dir)
         dplyr::bind_rows(dat_list) %>% 
-                dplyr::group_by(year, MONTH) %>% 
-                dplyr::summarize(n = n()) %>%
-                tidyr::spread(year, n)
+                dplyr::group_by_(~year, ~MONTH) %>% 
+                dplyr::summarize_(n = ~ n()) %>%
+                tidyr::spread_(key_col='year', value_col='n')
 }
 
 #====================================================================
@@ -214,7 +211,7 @@ fars_map_state <- function(state.num,year,dir='./inst/extdata') {
 
         if(!(state.num %in% unique(data$STATE)))
                 stop("invalid STATE number: ", state.num)
-        data.sub <- dplyr::filter(data, STATE == state.num)
+        data.sub <- dplyr::filter_(data, ~STATE == state.num)
         if(nrow(data.sub) == 0L) {
                 message("no accidents to plot")
                 return(invisible(NULL))
