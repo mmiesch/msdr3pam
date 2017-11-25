@@ -48,4 +48,5 @@ df <- fars_read(make_filename(2014,dir=dir))
 head(df)
 ```
 
-
+#### Master branch build status
+![](https://travis-ci.org/mmiesch/MovingHelper.svg?branch=master)
