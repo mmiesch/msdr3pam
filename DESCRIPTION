@@ -15,3 +15,4 @@ Suggests: knitr,
     rmarkdown,
     testthat
 VignetteBuilder: knitr
+Depends: dplyr, magrittr,tidyr,readr,maps,graphics
