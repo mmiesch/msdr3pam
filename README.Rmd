@@ -49,4 +49,4 @@ head(df)
 ```
 
 #### Master branch build status
-![](https://travis-ci.org/mmiesch/MovingHelper.svg?branch=master)
+![](https://travis-ci.org/mmiesch/msdr3pam.svg?branch=master)
