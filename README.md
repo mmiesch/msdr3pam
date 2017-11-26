@@ -72,6 +72,6 @@ head(df)
     ## #   ARR_HOUR <int>, ARR_MIN <int>, HOSP_HR <int>, HOSP_MN <int>,
     ## #   CF1 <int>, CF2 <int>, CF3 <int>, FATALS <int>, DRUNK_DR <int>
 
-#### Master branch build status
+#### Travis Master branch build status (<https://travis-ci.org>)
 
 ![](https://travis-ci.org/mmiesch/msdr3pam.svg?branch=master)
