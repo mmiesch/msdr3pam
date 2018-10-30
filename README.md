@@ -7,6 +7,7 @@ The goal of msdr3pam is to enable the user to read, summarize, plot, and otherwi
 The raw data provided by FARS is contained in csv files that include a ".bz2" extension reflecting bzip2 compression. Several sample data files are included in the package to provide application examples and testing. These sample raw data files can be accessed as follows: system.file("extdata","accident\_yyyy.csv.bz2",package="msdrpam"), where yyyy is either 2013, 2014, or 2015. For other years you will have to download the data yourself from the [FARS website](https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars).
 
 The name of the package reflects the conditions under which it was developed. In particular, it was developed for an assignment for Course 3 of the "Mastering Software Development in R" Specialization on Coursera (msdr3), offered by Johns Hopkins University. In particular, this is the R package assignment (pa) developed by student Miesch (m).
+new line.
 
 Example
 -------
